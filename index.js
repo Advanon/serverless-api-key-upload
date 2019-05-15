@@ -1,4 +1,4 @@
-const configuration = require('./src/configuration');
+const { getTags, getParamName, getDescription, getApiKey, getKmsKeyId } = require('./src/configuration');
 const { uploadParam, deleteParam } = require('./src/paramsStore');
 
 const getSsm = (serverless) => {
@@ -23,18 +23,18 @@ const upload = (serverless) => {
     const getParameter = makeGetParameter(ssm);
 
     return uploadParam(putParameter, addTagsToResource, getParameter, serverless.cli)(
-        configuration.getApiKey(serverless),
-        configuration.getParamName(serverless.service),
-        configuration.getDescription(serverless.service),
-        configuration.getTags(serverless.service),
-        configuration.getKmsKeyId(serverless.service)
+        getApiKey(serverless),
+        getParamName(serverless.service),
+        getDescription(serverless.service),
+        getTags(serverless.service),
+        getKmsKeyId(serverless.service)
     );
 };
 
 const remove = (serverless) => {
     const ssm = getSsm(serverless);
     const deleteParameter = makeDeleteParameter(ssm);
-    const paramName = configuration.getParamName(serverless.service);
+    const paramName = getParamName(serverless.service);
 
     return deleteParam(deleteParameter)(paramName);
 };
