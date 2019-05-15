@@ -38,6 +38,8 @@ paramName: /${self:provider.stage}/${self:service}/API_KEY
 ## Limitations
 This plugin works only if exactly one apiKey is specified.
 
+Requirements and constraints of parameter names page by AWS: https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-parameter-name-constraints.html
+
 ## Contributing
 Feedback, bug reports, and pull requests are welcome.
 
