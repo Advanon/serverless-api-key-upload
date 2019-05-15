@@ -8,9 +8,18 @@ const getSsm = (serverless) => {
     return new provider.sdk.SSM(awsCredentials);
 };
 
+const makePutParameter = (ssm) => async (params) => ssm.putParameter(params).promise();
+
+const makeAddTagsToResource = (ssm) => async (params) => ssm.addTagsToResource(params).promise();
+
+const makeDeleteParameter = (ssm) => async (params) => ssm.deleteParameter(params).promise();
+
 const makeUploadHook = (serverless) => {
     const ssm = getSsm(serverless);
-    return uploadParam(ssm, serverless.cli)(
+    const putParameter = makePutParameter(ssm);
+    const addTagsToResource = makeAddTagsToResource(ssm);
+
+    return uploadParam(putParameter, addTagsToResource, serverless.cli)(
         configuration.getApiKey(serverless),
         configuration.getParamName(serverless.service),
         configuration.getDescription(serverless.service),
@@ -20,8 +29,10 @@ const makeUploadHook = (serverless) => {
 
 const makeRemoveHook = (serverless) => {
     const ssm = getSsm(serverless);
+    const deleteParameter = makeDeleteParameter(ssm);
     const paramName = configuration.getParamName(serverless.service);
-    return deleteParam(ssm)(paramName);
+
+    return deleteParam(deleteParameter)(paramName);
 };
 
 class ServerlessApiKeyUploadToParameterStore {

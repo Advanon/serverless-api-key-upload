@@ -1,4 +1,4 @@
-const uploadParam = (ssm, logger) => async (apiKey, paramName, paramDescription, tags) => {
+const uploadParam = (putParameter, addTagsToResource, logger) => async (apiKey, paramName, paramDescription, tags) => {
     logger.log(`Uploading API key to parameters store with param key "${paramName}"`);
     const newParameterParams = {
         Name: paramName,
@@ -8,21 +8,21 @@ const uploadParam = (ssm, logger) => async (apiKey, paramName, paramDescription,
         Overwrite: true
     };
 
-    await ssm.putParameter(newParameterParams).promise();
+    await putParameter(newParameterParams);
 
     if (tags) {
-        await ssm.addTagsToResource({
+        await addTagsToResource({
             ResourceId: newParameterParams.Name,
             ResourceType: 'Parameter',
             Tags: tags
-        }).promise();
+        });
     }
 };
 
-const deleteParam = (ssm) => async (paramName) => {
-    return ssm.deleteParameter({
+const deleteParam = (deleteParameter) => async (paramName) => {
+    return deleteParameter({
         Name: paramName
-    }).promise();
+    });
 };
 
 module.exports = { uploadParam, deleteParam };
