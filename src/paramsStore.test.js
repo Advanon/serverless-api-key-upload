@@ -29,11 +29,13 @@ describe('paramsStore', () => {
             const getParamFunc = jest.fn();
             const putParamFunc = jest.fn();
             const addTagsFunc = jest.fn();
+
             beforeAll(async () => {
                 await uploadParam(
                     putParamFunc, addTagsFunc, getParamFunc, logger
                 )(apiKey, paramName, paramDescription, tags);
             });
+
             it('should get parameter', () => {
                 expect(getParamFunc.mock.calls.length).toBe(1);
                 expect(getParamFunc.mock.calls[0][0]).toStrictEqual({
@@ -41,6 +43,7 @@ describe('paramsStore', () => {
                     WithDecryption: true
                 });
             });
+
             it('should upload new parameter without KeyId', () => {
                 expect(putParamFunc.mock.calls.length).toBe(1);
                 expect(putParamFunc.mock.calls[0][0]).toStrictEqual({
@@ -51,6 +54,7 @@ describe('paramsStore', () => {
                     Overwrite: true
                 });
             });
+
             it('should add tags', () => {
                 expect(addTagsFunc.mock.calls.length).toBe(1);
                 expect(addTagsFunc.mock.calls[0][0]).toStrictEqual({
@@ -60,16 +64,19 @@ describe('paramsStore', () => {
                 });
             });
         });
+
         describe('on changed api parameter with tags without kmsKey', () => {
             const getParamFunc = jest.fn();
             const putParamFunc = jest.fn();
             const addTagsFunc = jest.fn();
             getParamFunc.mockReturnValueOnce({ Parameter: { Value: 'santa is not real' } });
+
             beforeAll(async () => {
                 await uploadParam(
                     putParamFunc, addTagsFunc, getParamFunc, logger
                 )(apiKey, paramName, paramDescription, tags);
             });
+
             it('should get parameter', () => {
                 expect(getParamFunc.mock.calls.length).toBe(1);
                 expect(getParamFunc.mock.calls[0][0]).toStrictEqual({
@@ -77,6 +84,7 @@ describe('paramsStore', () => {
                     WithDecryption: true
                 });
             });
+
             it('should upload new parameter without KeyId', () => {
                 expect(putParamFunc.mock.calls.length).toBe(1);
                 expect(putParamFunc.mock.calls[0][0]).toStrictEqual({
@@ -87,6 +95,7 @@ describe('paramsStore', () => {
                     Overwrite: true
                 });
             });
+
             it('should add tags', () => {
                 expect(addTagsFunc.mock.calls.length).toBe(1);
                 expect(addTagsFunc.mock.calls[0][0]).toStrictEqual({
@@ -96,15 +105,18 @@ describe('paramsStore', () => {
                 });
             });
         });
+
         describe('on new api parameter without tags with kmsKey', () => {
             const getParamFunc = jest.fn();
             const putParamFunc = jest.fn();
             const addTagsFunc = jest.fn();
+
             beforeAll(async () => {
                 await uploadParam(
                     putParamFunc, addTagsFunc, getParamFunc, logger
                 )(apiKey, paramName, paramDescription, null, kmsKeyId);
             });
+
             it('should get parameter', () => {
                 expect(getParamFunc.mock.calls.length).toBe(1);
                 expect(getParamFunc.mock.calls[0][0]).toStrictEqual({
@@ -112,6 +124,7 @@ describe('paramsStore', () => {
                     WithDecryption: true
                 });
             });
+
             it('should upload new parameter with KeyId', () => {
                 expect(putParamFunc.mock.calls.length).toBe(1);
                 expect(putParamFunc.mock.calls[0][0]).toStrictEqual({
@@ -123,6 +136,7 @@ describe('paramsStore', () => {
                     KeyId: kmsKeyId
                 });
             });
+
             it('should not add tags', () => {
                 expect(addTagsFunc.mock.calls.length).toBe(0);
             });
@@ -133,11 +147,13 @@ describe('paramsStore', () => {
             const putParamFunc = jest.fn();
             const addTagsFunc = jest.fn();
             getParamFunc.mockReturnValueOnce({ Parameter: { Value: apiKey } });
+
             beforeAll(async () => {
                 await uploadParam(
                     putParamFunc, addTagsFunc, getParamFunc, logger
                 )(apiKey, paramName, paramDescription, tags, kmsKeyId);
             });
+
             it('should get parameter', () => {
                 expect(getParamFunc.mock.calls.length).toBe(1);
                 expect(getParamFunc.mock.calls[0][0]).toStrictEqual({
@@ -145,9 +161,11 @@ describe('paramsStore', () => {
                     WithDecryption: true
                 });
             });
+
             it('should not upload new parameter', () => {
                 expect(putParamFunc.mock.calls.length).toBe(0);
             });
+
             it('should not add tags', () => {
                 expect(addTagsFunc.mock.calls.length).toBe(0);
             });
