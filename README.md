@@ -27,6 +27,7 @@ custom:
     description: Description for parameter inside AWS Parameters Store
     paramName: Name of the parameter inside AWS Parameters Store
     kmsKeyId: keyId
+    tier: Standard | Advanced
 ```
 
 ### Defaults
@@ -39,6 +40,7 @@ tags:
 description: API key for service ${self:service} on stage ${self:provider.stage}
 paramName: /${self:provider.stage}/${self:service}/API_KEY
 kmsKeyId: # System uses the default key associated with your AWS account.
+tier: Standard
 ```
 
 ## Limitations

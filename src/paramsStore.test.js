@@ -24,6 +24,7 @@ describe('paramsStore', () => {
         const paramDescription = 'any param descr';
         const tags = 'any tags';
         const kmsKeyId = 'anyKey';
+        const tier = 'any tier';
 
         describe('on new api parameter with tags without kmsKey', () => {
             const getParamFunc = jest.fn();
@@ -33,7 +34,7 @@ describe('paramsStore', () => {
             beforeAll(async () => {
                 await uploadParam(
                     putParamFunc, addTagsFunc, getParamFunc, logger
-                )(apiKey, paramName, paramDescription, tags);
+                )(apiKey, paramName, paramDescription, tier, tags);
             });
 
             it('should get parameter', () => {
@@ -51,7 +52,8 @@ describe('paramsStore', () => {
                     Type: 'SecureString',
                     Value: apiKey,
                     Description: paramDescription,
-                    Overwrite: true
+                    Overwrite: true,
+                    Tier: tier
                 });
             });
 
@@ -74,7 +76,7 @@ describe('paramsStore', () => {
             beforeAll(async () => {
                 await uploadParam(
                     putParamFunc, addTagsFunc, getParamFunc, logger
-                )(apiKey, paramName, paramDescription, tags);
+                )(apiKey, paramName, paramDescription, tier, tags);
             });
 
             it('should get parameter', () => {
@@ -92,7 +94,8 @@ describe('paramsStore', () => {
                     Type: 'SecureString',
                     Value: apiKey,
                     Description: paramDescription,
-                    Overwrite: true
+                    Overwrite: true,
+                    Tier: tier
                 });
             });
 
@@ -114,7 +117,7 @@ describe('paramsStore', () => {
             beforeAll(async () => {
                 await uploadParam(
                     putParamFunc, addTagsFunc, getParamFunc, logger
-                )(apiKey, paramName, paramDescription, null, kmsKeyId);
+                )(apiKey, paramName, paramDescription, tier, null, kmsKeyId);
             });
 
             it('should get parameter', () => {
@@ -133,7 +136,8 @@ describe('paramsStore', () => {
                     Value: apiKey,
                     Description: paramDescription,
                     Overwrite: true,
-                    KeyId: kmsKeyId
+                    KeyId: kmsKeyId,
+                    Tier: tier
                 });
             });
 
@@ -151,7 +155,7 @@ describe('paramsStore', () => {
             beforeAll(async () => {
                 await uploadParam(
                     putParamFunc, addTagsFunc, getParamFunc, logger
-                )(apiKey, paramName, paramDescription, tags, kmsKeyId);
+                )(apiKey, paramName, paramDescription, tier, tags, kmsKeyId);
             });
 
             it('should get parameter', () => {

@@ -1,5 +1,5 @@
 const uploadParam = (putParameter, addTagsToResource, getParameter, logger) =>
-    async (apiKey, paramName, paramDescription, tags, kmsKeyId) => {
+    async (apiKey, paramName, paramDescription, tier, tags, kmsKeyId) => {
         try {
             const currentParameter = await getParameter({
                 Name: paramName,
@@ -21,7 +21,8 @@ const uploadParam = (putParameter, addTagsToResource, getParameter, logger) =>
             Type: 'SecureString',
             Value: apiKey,
             Description: paramDescription,
-            Overwrite: true
+            Overwrite: true,
+            Tier: tier
         };
 
         if (kmsKeyId) {

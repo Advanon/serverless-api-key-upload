@@ -13,6 +13,14 @@ const getApiKey = (serverless) => {
     return getApiKeys(serverless)[0].value;
 };
 
+const getTier = (service) => {
+    if (hasConfigProperty(service, 'tier')) {
+        return service.custom.apiKeyParam.tier;
+    } else {
+        return 'Standard';
+    }
+};
+
 const getTags = (service) => {
     if (hasConfigProperty(service, 'tags')) {
         return Object.getOwnPropertyNames(service.custom.apiKeyParam.tags).map((key) => {
@@ -63,4 +71,4 @@ const getStage = (service) => service.provider.stage;
 
 const getService = (service) => service.service;
 
-module.exports = { getTags, getParamName, getDescription, getApiKey, getKmsKeyId };
+module.exports = { getTags, getParamName, getDescription, getApiKey, getKmsKeyId, getTier };

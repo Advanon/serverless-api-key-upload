@@ -1,4 +1,4 @@
-const { getTags, getParamName, getDescription, getApiKey, getKmsKeyId } = require('./src/configuration');
+const { getTags, getParamName, getDescription, getApiKey, getKmsKeyId, getTier } = require('./src/configuration');
 const { uploadParam, deleteParam } = require('./src/paramsStore');
 
 const getSsm = (serverless) => {
@@ -26,6 +26,7 @@ const upload = (serverless) => {
         getApiKey(serverless),
         getParamName(serverless.service),
         getDescription(serverless.service),
+        getTier(serverless.service),
         getTags(serverless.service),
         getKmsKeyId(serverless.service)
     );
