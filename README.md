@@ -31,6 +31,7 @@ If any configuration attribute is not specified, defaults are used.
 ```yaml
 tags:
   ENVIRONMENT: ${self:provider.stage}
+  PROJECT: ${self:service}-${self:provider.stage}
 description: API key for service ${self:service} on stage ${self:provider.stage}
 paramName: /${self:provider.stage}/${self:service}/API_KEY
 ```

@@ -22,10 +22,15 @@ const getTags = (service) => {
             };
         });
     } else {
-        return [{
-            Key: 'ENVIRONMENT',
-            Value: getStage(service)
-        }];
+        return [
+            {
+                Key: 'ENVIRONMENT',
+                Value: getStage(service)
+            },
+            {
+                Key: 'PROJECT',
+                Value: `${getService(service)}-${getStage(service)}`
+            }];
     }
 };
 
