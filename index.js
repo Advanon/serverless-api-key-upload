@@ -16,7 +16,7 @@ const makeAddTagsToResource = (ssm) => async (params) => ssm.addTagsToResource(p
 
 const makeDeleteParameter = (ssm) => async (params) => ssm.deleteParameter(params).promise();
 
-const makeUploadHook = (serverless) => {
+const upload = (serverless) => {
     const ssm = getSsm(serverless);
     const putParameter = makePutParameter(ssm);
     const addTagsToResource = makeAddTagsToResource(ssm);
@@ -31,7 +31,7 @@ const makeUploadHook = (serverless) => {
     );
 };
 
-const makeRemoveHook = (serverless) => {
+const remove = (serverless) => {
     const ssm = getSsm(serverless);
     const deleteParameter = makeDeleteParameter(ssm);
     const paramName = configuration.getParamName(serverless.service);
@@ -54,8 +54,8 @@ class ServerlessApiKeyUploadToParameterStore {
 
     setupHooks() {
         return {
-            'after:deploy:deploy': () => makeUploadHook(this.serverless),
-            'before:remove:remove': () => makeRemoveHook(this.serverless)
+            'after:deploy:deploy': () => upload(this.serverless),
+            'before:remove:remove': () => remove(this.serverless)
         };
     }
 }
