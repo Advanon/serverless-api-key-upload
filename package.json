@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Advanon/serverless-api-key-upload#readme",
   "devDependencies": {
-    "eslint": "^5.16.0"
+    "eslint": "^5.16.0",
+    "jest": "^24.8.0"
   }
 }
