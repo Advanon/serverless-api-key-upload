@@ -1,6 +1,6 @@
 # serverless-api-key-upload
 
-This plugin uploads API Gateway API key to AWS Parameters Store as String parameter. 
+This plugin uploads API Gateway API key to AWS Parameter Store as a String parameter. 
 For the uploaded parameter you can specify
 - name
 - tags
