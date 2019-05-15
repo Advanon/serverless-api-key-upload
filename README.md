@@ -1,10 +1,11 @@
 # serverless-api-key-upload
 
-This plugin uploads API Gateway API key to AWS Parameter Store as a String parameter. 
+This plugin uploads API Gateway API key to AWS Parameter Store as a SecureString parameter. 
 For the uploaded parameter you can specify
 - name
 - tags
 - description
+- kmsKeyId
 
 ## Installation
 ```bash
@@ -23,6 +24,7 @@ custom:
       ANY_OTHER_TAG: bar
     description: Description for parameter inside AWS Parameters Store
     paramName: Name of the parameter inside AWS Parameters Store
+    kmsKeyId: keyId
 ```
 
 ### Defaults
@@ -34,6 +36,7 @@ tags:
   PROJECT: ${self:service}-${self:provider.stage}
 description: API key for service ${self:service} on stage ${self:provider.stage}
 paramName: /${self:provider.stage}/${self:service}/API_KEY
+kmsKeyId: # System uses the default key associated with your AWS account.
 ```
 
 ## Limitations

@@ -42,6 +42,14 @@ const getDescription = (service) => {
     }
 };
 
+const getKmsKeyId = (service) => {
+    if (hasConfigProperty(service, 'kmsKeyId')) {
+        return service.custom.apiKeyParam.kmsKeyId;
+    } else {
+        return null;
+    }
+};
+
 const getParamName = (service) => {
     if (hasConfigProperty(service, 'paramName')) {
         return service.custom.apiKeyParam.paramName;
@@ -54,4 +62,4 @@ const getStage = (service) => service.provider.stage;
 
 const getService = (service) => service.service;
 
-module.exports = { getTags, getParamName, getDescription, getApiKey };
+module.exports = { getTags, getParamName, getDescription, getApiKey, getKmsKeyId };

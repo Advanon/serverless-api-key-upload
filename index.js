@@ -23,7 +23,8 @@ const makeUploadHook = (serverless) => {
         configuration.getApiKey(serverless),
         configuration.getParamName(serverless.service),
         configuration.getDescription(serverless.service),
-        configuration.getTags(serverless.service)
+        configuration.getTags(serverless.service),
+        configuration.getKmsKeyId(serverless.service)
     );
 };
 
