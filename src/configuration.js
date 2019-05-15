@@ -30,7 +30,8 @@ const getTags = (service) => {
             {
                 Key: 'PROJECT',
                 Value: `${getService(service)}-${getStage(service)}`
-            }];
+            }
+        ];
     }
 };
 
