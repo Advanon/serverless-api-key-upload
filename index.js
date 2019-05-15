@@ -10,6 +10,8 @@ const getSsm = (serverless) => {
 
 const makePutParameter = (ssm) => async (params) => ssm.putParameter(params).promise();
 
+const makeGetParameter = (ssm) => async (params) => ssm.getParameter(params).promise();
+
 const makeAddTagsToResource = (ssm) => async (params) => ssm.addTagsToResource(params).promise();
 
 const makeDeleteParameter = (ssm) => async (params) => ssm.deleteParameter(params).promise();
@@ -18,8 +20,9 @@ const makeUploadHook = (serverless) => {
     const ssm = getSsm(serverless);
     const putParameter = makePutParameter(ssm);
     const addTagsToResource = makeAddTagsToResource(ssm);
+    const getParameter = makeGetParameter(ssm);
 
-    return uploadParam(putParameter, addTagsToResource, serverless.cli)(
+    return uploadParam(putParameter, addTagsToResource, getParameter, serverless.cli)(
         configuration.getApiKey(serverless),
         configuration.getParamName(serverless.service),
         configuration.getDescription(serverless.service),
