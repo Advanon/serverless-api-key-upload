@@ -1,4 +1,4 @@
-[![Build Status](https://codebuild.eu-central-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiaTRKN3cyT3p5OEl4K0lqUHhVY2NrRlh2cElCVTkrWEIwTHZ1bi9lN3FXcTQyeUFldWl6ZnFDZ3hjUUdTMnVwc285engvRzE2eWRwV2lmaVhnSkloSEpNPSIsIml2UGFyYW1ldGVyU3BlYyI6InlkVUVrL2plSVFvZ1ZyMUoiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)](https://eu-central-1.console.aws.amazon.com/codesuite/codebuild/projects/serverless-api-key-upload-build)
+[![Build Status](https://codebuild.eu-central-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoieXFqYm1vVUpYdDZ2Nk0vM1JlY0NkTkhSaUxCOXNzQmx2Z2xwVGd3d2gxQzM0N1MxY0FtQ0VNSDNjYUszVkQ1N0tMcEl0MWZ0NTNXZU04RlNCM1ZrdFh3PSIsIml2UGFyYW1ldGVyU3BlYyI6IndLVFUxMVlRTjgyM2x3T3YiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)](https://eu-central-1.console.aws.amazon.com/codesuite/codebuild/projects/global-dev-serverless-api-key-upload-tf-pr-build)
 # serverless-api-key-upload
 
 This plugin uploads new/changed API Gateway API key to AWS Parameter Store as a SecureString parameter. 
