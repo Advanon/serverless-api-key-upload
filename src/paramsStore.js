@@ -22,11 +22,14 @@ const uploadParam = (putParameter, addTagsToResource, getParameter, logger) =>
             Value: apiKey,
             Description: paramDescription,
             Overwrite: true,
-            Tier: tier
         };
 
         if (kmsKeyId) {
             newParameterParams.KeyId = kmsKeyId;
+        }
+
+        if (tier) {
+            newParameterParams.Tier = tier;
         }
 
         await putParameter(newParameterParams);
