@@ -46,6 +46,8 @@ tier: Standard
 ## Limitations
 This plugin works only if exactly one apiKey is specified.
 
+Use of `tier` attribute requires aws-sdk 2.442.0 or higher.
+
 Requirements and constraints of parameter names page by AWS: https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-parameter-name-constraints.html
 
 ## Contributing

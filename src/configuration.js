@@ -16,8 +16,6 @@ const getApiKey = (serverless) => {
 const getTier = (service) => {
     if (hasConfigProperty(service, 'tier')) {
         return service.custom.apiKeyParam.tier;
-    } else {
-        return 'Standard';
     }
 };
 
