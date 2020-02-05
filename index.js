@@ -4,6 +4,7 @@ const { uploadParam, deleteParam } = require('./src/paramsStore');
 const getSsm = (serverless) => {
     const provider = serverless.getProvider('aws');
     const awsCredentials = provider.getCredentials();
+    awsCredentials.region = provider.getRegion();
 
     return new provider.sdk.SSM(awsCredentials);
 };

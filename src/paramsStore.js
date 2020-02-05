@@ -43,10 +43,6 @@ const uploadParam = (putParameter, addTagsToResource, getParameter, logger) =>
         }
     };
 
-const deleteParam = (deleteParameter) => async (paramName) => {
-    return deleteParameter({
-        Name: paramName
-    });
-};
+const deleteParam = (deleteParameter) => async (Name) => deleteParameter({ Name });
 
 module.exports = { uploadParam, deleteParam };
