@@ -1,6 +1,6 @@
 {
   "name": "serverless-api-key-upload",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Serverless plugin for uploading API key to AWS Parameters Store",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/Advanon/serverless-api-key-upload#readme",
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "jest": "^24.8.0"
+    "eslint": "^6.8.0",
+    "jest": "^25.1.0"
   }
 }
