@@ -1,7 +1,7 @@
 [![Build Status](https://codebuild.eu-central-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoieXFqYm1vVUpYdDZ2Nk0vM1JlY0NkTkhSaUxCOXNzQmx2Z2xwVGd3d2gxQzM0N1MxY0FtQ0VNSDNjYUszVkQ1N0tMcEl0MWZ0NTNXZU04RlNCM1ZrdFh3PSIsIml2UGFyYW1ldGVyU3BlYyI6IndLVFUxMVlRTjgyM2x3T3YiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)](https://eu-central-1.console.aws.amazon.com/codesuite/codebuild/projects/global-dev-serverless-api-key-upload-tf-pr-build)
 # serverless-api-key-upload
 
-This plugin uploads new/changed API Gateway API key to AWS Parameter Store as a SecureString parameter. 
+This plugin uploads new/changed API Gateway API key to AWS Parameter Store as a SecureString parameter.
 If value of API Key is not changed, upload won't be performed.
 For the uploaded parameter you can specify
 - name
@@ -11,7 +11,7 @@ For the uploaded parameter you can specify
 
 ## Installation
 ```bash
-npm install --save-dev serverless-api-key-upload
+npm install --save-dev @advanon-ag/serverless-api-key-upload
 ```
 
 ## Usage
@@ -21,6 +21,7 @@ plugins:
 
 custom:
   apiKeyParam: # Every configuration attribute is optional
+    enabled: true # Default
     tags:
       ANY_TAG_NAME: foo
       ANY_OTHER_TAG: bar

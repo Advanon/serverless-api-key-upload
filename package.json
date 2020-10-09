@@ -1,5 +1,5 @@
 {
-  "name": "serverless-api-key-upload",
+  "name": "@advanon-ag/serverless-api-key-upload",
   "version": "1.0.1",
   "description": "Serverless plugin for uploading API key to AWS Parameters Store",
   "main": "index.js",
