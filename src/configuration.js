@@ -6,7 +6,7 @@ const getApiKeys = (serverless) => {
 const hasConfigProperty = (service, propertyName) => {
     return service.custom &&
         service.custom.apiKeyParam &&
-        service.custom.apiKeyParam[propertyName];
+        service.custom.apiKeyParam[propertyName] !== undefined;
 };
 
 const getApiKey = (serverless) => {
