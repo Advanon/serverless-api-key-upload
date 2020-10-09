@@ -1,5 +1,14 @@
-const { getTags, getParamName, getDescription, getApiKey, getKmsKeyId, getTier } = require('./src/configuration');
 const { uploadParam, deleteParam } = require('./src/paramsStore');
+
+const {
+    getTags,
+    getParamName,
+    getDescription,
+    getApiKey,
+    getKmsKeyId,
+    getTier,
+    getEnabled
+} = require('./src/configuration');
 
 const getSsm = (serverless) => {
     const provider = serverless.getProvider('aws');
@@ -18,6 +27,8 @@ const makeAddTagsToResource = (ssm) => async (params) => ssm.addTagsToResource(p
 const makeDeleteParameter = (ssm) => async (params) => ssm.deleteParameter(params).promise();
 
 const upload = (serverless) => {
+    if (!getEnabled(serverless.service)) return;
+
     const ssm = getSsm(serverless);
     const putParameter = makePutParameter(ssm);
     const addTagsToResource = makeAddTagsToResource(ssm);
@@ -34,6 +45,8 @@ const upload = (serverless) => {
 };
 
 const remove = (serverless) => {
+    if (!getEnabled(serverless.service)) return;
+
     const ssm = getSsm(serverless);
     const deleteParameter = makeDeleteParameter(ssm);
     const paramName = getParamName(serverless.service);

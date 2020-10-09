@@ -19,6 +19,14 @@ const getTier = (service) => {
     }
 };
 
+const getEnabled = (service) => {
+    if (hasConfigProperty(service, 'enabled')) {
+        return service.custom.apiKeyParam.enabled;
+    }
+
+    return true;
+};
+
 const getTags = (service) => {
     if (hasConfigProperty(service, 'tags')) {
         return Object.getOwnPropertyNames(service.custom.apiKeyParam.tags).map((key) => {
@@ -69,4 +77,12 @@ const getStage = (service) => service.provider.stage;
 
 const getService = (service) => service.service;
 
-module.exports = { getTags, getParamName, getDescription, getApiKey, getKmsKeyId, getTier };
+module.exports = {
+    getTags,
+    getParamName,
+    getDescription,
+    getApiKey,
+    getKmsKeyId,
+    getTier,
+    getEnabled
+};
